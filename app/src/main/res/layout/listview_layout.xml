@@ -35,8 +35,9 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <Button
+        <ImageButton
             android:id="@+id/deleteButton"
+            android:background="@drawable/delete_button"
             android:layout_width="83dp"
             android:layout_height="61dp"
             android:layout_alignParentTop="true"
@@ -45,6 +46,6 @@
             android:layout_marginTop="53dp"
             android:layout_marginEnd="4dp"
             android:layout_toEndOf="@+id/textView"
-            android:text="@string/delete_button" />
+            app:srcCompat="@drawable/baseline_delete_white_18dp" />
     </RelativeLayout>
 </LinearLayout>

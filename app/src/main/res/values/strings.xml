@@ -11,10 +11,11 @@
     <string name="hint">Name Nicknameson</string>
     <string name="addImage">Add an image!</string>
     <string name="error_message"></string>
-    <string name="addImage_button">New entry</string>
     <string name="quiz_button">Submit</string>
     <string name="quiz_score">Score:</string>
     <string name="quiz_content">Quiz image</string>
     <string name="feedBack"></string>
     <string name="delete_button">Delete</string>
+    <string name="upload_content">Upload from gallery</string>
+    <string name="camera_content">Take a picture from camera</string>
 </resources>

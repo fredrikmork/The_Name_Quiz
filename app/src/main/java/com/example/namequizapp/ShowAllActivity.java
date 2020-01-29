@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class ShowAllActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView lst;
-    Button addEntry;
+    private ImageButton addEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +32,13 @@ public class ShowAllActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         Intent intent_add = new Intent(ShowAllActivity.this, AddImageActivity.class);
         startActivity(intent_add);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedData app = (SharedData) getApplication();
+        CustomListView customListView = new CustomListView(this, app.sharedData);
+        lst.setAdapter(customListView);
     }
 }

@@ -89,8 +89,8 @@
 
     <TextView
         android:id="@+id/feedBackText"
-        android:layout_width="298dp"
-        android:layout_height="39dp"
+        android:layout_width="296dp"
+        android:layout_height="68dp"
         android:text="@string/feedBack"
         android:textColor="#FFFFFF"
         android:textSize="24sp"

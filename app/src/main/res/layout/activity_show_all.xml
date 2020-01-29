@@ -51,18 +51,17 @@
             app:layout_constraintVertical_bias="0.0" />
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/addImage_button"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginStart="300dp"
-        android:layout_marginTop="0dp"
-        android:text="@string/addImage_button"
+        android:background="@drawable/custom_button"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:background="@drawable/custom_button"
-        android:textColor="#FFFFFF" />
+        app:srcCompat="@drawable/baseline_person_add_white_18dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,11 @@
 package com.example.namequizapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,11 +54,11 @@ public class CustomListView extends ArrayAdapter<Person> {
     }
 
 
-    class ViewHolder implements View.OnClickListener {
+    class ViewHolder {
 
         private TextView tvw;
         private ImageView ivw;
-        private Button btn;
+        private ImageButton btn;
 
         public ViewHolder(View v){
             tvw = v.findViewById(R.id.textView);
@@ -67,9 +66,5 @@ public class CustomListView extends ArrayAdapter<Person> {
             btn = v.findViewById(R.id.deleteButton);
         }
 
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 }
