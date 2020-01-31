@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -67,15 +68,12 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            EditText editText = findViewById(R.id.name_edit);
-            name = editText.getText().toString();
             imageToUpload.setImageBitmap(bitmap);
 
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null){
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageToUpload.setImageBitmap(imageBitmap);
+            bitmap = (Bitmap) extras.get("data");
+            imageToUpload.setImageBitmap(bitmap);
 
         }
     }
@@ -86,6 +84,8 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         EditText editText = findViewById(R.id.name_edit);
         ImageView imageView = findViewById(R.id.imageView_add);
         SharedData app = (SharedData) getApplication();
+
+        name = editText.getText().toString();
         Person p = new Person(bitmap, name);
 
         editText.setText("");
@@ -94,8 +94,13 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
 
         Log.i("Name: ", "" + p.getName());
         Log.i("Bitmap: ", "" + p.getBitmap());
-        if((p.getBitmap() == null) || p.getName().isEmpty()) {
-            errorText.setText("You must choose a picture and a name."); // TODO When pressed enter, this error message show up, even if Person is not empty
+        if((bitmap == null) || name.isEmpty()) {
+            if (name.isEmpty()){
+                editText.setError("You must type in a name!");
+            } else {
+                errorText.setText("You must choose a picture.");
+            }
+
         } else {
             errorText.setText("");
             app.sharedData.add(p);
