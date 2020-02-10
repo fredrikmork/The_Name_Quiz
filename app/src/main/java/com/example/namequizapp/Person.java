@@ -2,7 +2,11 @@ package com.example.namequizapp;
 
 import android.graphics.Bitmap;
 
+import androidx.room.Entity;
+
+@Entity (tableName = "persons")
 public class Person {
+
     private Bitmap bitmap;
     private String name;
 
