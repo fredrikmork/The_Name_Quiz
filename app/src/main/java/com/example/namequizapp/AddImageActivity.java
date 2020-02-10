@@ -74,6 +74,21 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
             Bundle extras = data.getExtras();
             bitmap = (Bitmap) extras.get("data");
             imageToUpload.setImageBitmap(bitmap);
+            String title = "FreddaTEST";
+            String description = "Teste";
+            try {
+                String fileURL = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, title, description);
+                Toast.makeText(this, fileURL, Toast.LENGTH_SHORT).show();
+                if( fileURL == null) {
+                    Log.d("Still", "Image insert failed.");
+                    return;
+                } else {
+                    Uri picUri = Uri.parse(fileURL);
+                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, picUri));
+                }
+            } catch (Exception e){
+                Log.e("Still", "Error writing file", e);
+            }
 
         }
     }

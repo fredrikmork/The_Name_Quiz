@@ -4,16 +4,21 @@
 
     <uses-feature android:name="android.permission.INTERNET" /> <!-- Give internet permission -->
     <uses-feature android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
+        android:name=".SharedData"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".SharedData">
-        <activity android:name=".ShowAllActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".ShowAllActivity" />
         <activity android:name=".AddImageActivity" />
         <activity android:name=".QuizActivity" />
         <activity android:name=".MainActivity">

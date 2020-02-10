@@ -18,4 +18,12 @@
     <string name="delete_button">Delete</string>
     <string name="upload_content">Upload from gallery</string>
     <string name="camera_content">Take a picture from camera</string>
+    <string name="addUsernameText">Update your username below</string>
+    <string name="username_hint">Username</string>
+    <string name="update_username_btn">Update username</string>
+    <string name="edittext">com.example.namequizapp.edittext</string>
+    <string name="settingsText">Change username:</string>
+    <string name="backBtnDesc">Back from fragment</string>
+    <string name="updateUsernameBtn">Update name</string>
+    <string name="settingsTextView">Settings</string>
 </resources>
