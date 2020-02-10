@@ -2,6 +2,7 @@ package com.example.namequizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -40,7 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
             et.setError("The name cannot be empty!");
         } else {
             spe = PreferenceManager.getDefaultSharedPreferences(this).edit();
-            spe.putString(KEY_NAME, tv.getText().toString());
+            String updatedName = et.getText().toString().trim();
+            spe.putString(KEY_NAME, updatedName);
             spe.commit();
             finish();
         }
