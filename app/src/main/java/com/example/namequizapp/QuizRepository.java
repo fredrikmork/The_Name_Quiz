@@ -26,7 +26,7 @@ public class QuizRepository {
 
         @Override
         protected List<Person> doInBackground(final String... params) {
-            return asyncTaskDao.findProduct(params[0]);
+            return asyncTaskDao.findPerson(params[0]);
         }
 
         @Override
@@ -60,7 +60,7 @@ public class QuizRepository {
 
         @Override
         protected Void doInBackground(final String... params) {
-            asyncTaskDao.deleteProduct(params[0]);
+            asyncTaskDao.deletePerson(Integer.parseInt(params[0]));
             return null;
         }
     }

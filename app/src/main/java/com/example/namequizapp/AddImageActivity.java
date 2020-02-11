@@ -100,7 +100,16 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         ImageView imageView = findViewById(R.id.imageView_add);
         SharedData app = (SharedData) getApplication();
 
+
         name = editText.getText().toString();
+
+        Person person = new Person(0, name);
+
+
+
+
+
+
         //Person p = new Person(bitmap, name);
 
         editText.setText("");
@@ -119,11 +128,10 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         } else {
             errorText.setText("");
             //app.sharedData.add(p);
-            Context context = getApplicationContext();
-            CharSequence text = "Image and name uploaded!";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+
+            MainActivity.quizRoomDatabase.personDAO().insertPerson(person);
+            System.out.println("Added to database");
+
         }
 
     }

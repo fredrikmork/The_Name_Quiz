@@ -8,10 +8,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class ShowAllActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ListView lst;
     private ImageButton addEntry;
+    ArrayList<Person> liste = (ArrayList<Person>) MainActivity.quizRoomDatabase.personDAO().getAllPersons();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,9 @@ public class ShowAllActivity extends AppCompatActivity implements View.OnClickLi
         addEntry.setOnClickListener(this);
 
         lst=findViewById(R.id.listView);
-        CustomListView customListView = new CustomListView(this, app.sharedData);
+
+
+        CustomListView customListView = new CustomListView(this, liste);
         lst.setAdapter(customListView);
     }
 
@@ -38,7 +43,7 @@ public class ShowAllActivity extends AppCompatActivity implements View.OnClickLi
     protected void onResume() {
         super.onResume();
         SharedData app = (SharedData) getApplication();
-        CustomListView customListView = new CustomListView(this, app.sharedData);
+        CustomListView customListView = new CustomListView(this, liste);
         lst.setAdapter(customListView);
     }
 }

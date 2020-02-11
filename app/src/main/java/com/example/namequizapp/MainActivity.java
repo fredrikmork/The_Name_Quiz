@@ -3,6 +3,7 @@ package com.example.namequizapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,11 +29,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String SHARED_PREF_NAME = "";
     private static final String KEY_NAME = "key";
 
+    public static QuizRoomDatabase quizRoomDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        quizRoomDatabase = Room.databaseBuilder(getApplicationContext(), QuizRoomDatabase.class, "persondb").allowMainThreadQueries().build();
 
         quiz = findViewById(R.id.quizButton);
         addImage = findViewById(R.id.addImage_button);
