@@ -128,7 +128,7 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         } else {
             errorText.setText("");
             //app.sharedData.add(p);
-
+            Toast.makeText(this, "The person has been added to the database, check it out!", Toast.LENGTH_SHORT).show();
             MainActivity.quizRoomDatabase.personDAO().insertPerson(person);
             System.out.println("Added to database");
 

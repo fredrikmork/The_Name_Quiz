@@ -45,13 +45,13 @@ public class CustomListView extends ArrayAdapter<Person> {
         //viewHolder.ivw.setImageBitmap(p.get(position).getBitmap());
         //viewHolder.tvw.setText(p.get(position).getName());
 
-        ArrayList<Person> personer = (ArrayList<Person>) personDao.loadAllPersons();
+        final ArrayList<Person> personer = (ArrayList<Person>) personDao.loadAllPersons();
 
         viewHolder.tvw.setText(personer.get(position).getName());
         viewHolder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                personDao.deletePerson(position);
+                personDao.deletePerson(personer.get(position));
                 p.remove(position);
                 notifyDataSetChanged();
             }

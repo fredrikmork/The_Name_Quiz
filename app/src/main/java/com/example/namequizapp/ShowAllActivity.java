@@ -14,7 +14,7 @@ public class ShowAllActivity extends AppCompatActivity implements View.OnClickLi
 
     private ListView lst;
     private ImageButton addEntry;
-    ArrayList<Person> liste = (ArrayList<Person>) MainActivity.quizRoomDatabase.personDAO().getAllPersons();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class ShowAllActivity extends AppCompatActivity implements View.OnClickLi
 
         lst=findViewById(R.id.listView);
 
-
+        ArrayList<Person> liste = (ArrayList<Person>) MainActivity.quizRoomDatabase.personDAO().getAllPersons();
         CustomListView customListView = new CustomListView(this, liste);
         lst.setAdapter(customListView);
     }
@@ -42,8 +42,10 @@ public class ShowAllActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onResume() {
         super.onResume();
-        SharedData app = (SharedData) getApplication();
+        //SharedData app = (SharedData) getApplication();
+        ArrayList<Person> liste = (ArrayList<Person>) MainActivity.quizRoomDatabase.personDAO().getAllPersons();
         CustomListView customListView = new CustomListView(this, liste);
+        customListView.notifyDataSetChanged();
         lst.setAdapter(customListView);
     }
 }

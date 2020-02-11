@@ -2,7 +2,6 @@ package com.example.namequizapp;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,14 +20,12 @@ public interface PersonDao {
     @Query("SELECT * FROM persons WHERE nickname = :name")
     List<Person> findPersonId(String name);
 
-    @Query("SELECT * FROM persons")
-    public Person[] loadAllUsers();
 
     @Query("SELECT * FROM persons")
     public List<Person> loadAllPersons();
 
-    @Query("DELETE FROM persons WHERE id = :id")
-    void deletePerson(int id);
+    @Delete
+    void deletePerson(Person person);
 
     @Query("SELECT * FROM persons")
     List<Person> getAllPersons();

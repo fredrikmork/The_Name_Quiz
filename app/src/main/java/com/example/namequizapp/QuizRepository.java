@@ -50,7 +50,7 @@ public class QuizRepository {
         }
     }
 
-    private static class DeleteAsyncTask extends AsyncTask<String, Void, Void> {
+    private static class DeleteAsyncTask extends AsyncTask<Person, Void, Void> {
 
         private PersonDao asyncTaskDao;
 
@@ -59,8 +59,8 @@ public class QuizRepository {
         }
 
         @Override
-        protected Void doInBackground(final String... params) {
-            asyncTaskDao.deletePerson(Integer.parseInt(params[0]));
+        protected Void doInBackground(final Person... params) {
+            asyncTaskDao.deletePerson(params[0]);
             return null;
         }
     }
