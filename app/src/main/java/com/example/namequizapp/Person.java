@@ -15,8 +15,8 @@ public class Person {
     private int id;
 
     //@NonNull
-    @ColumnInfo(name = "image")
-    private Byte[] photo;
+    // @ColumnInfo(name = "image")
+    //private Byte[] photo;
 
     @NonNull
     @ColumnInfo(name = "nickname")
@@ -32,7 +32,7 @@ public class Person {
         return id;
     }
 
-    @NonNull
+   /* @NonNull
     public Byte[] getPhoto() {
         return photo;
     }
@@ -40,7 +40,7 @@ public class Person {
     public void setPhoto(@NonNull Byte[] photo) {
         this.photo = photo;
     }
-
+*/
     @NonNull
     public String getName() {
         return name;

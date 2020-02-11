@@ -25,14 +25,3 @@ public abstract class QuizRoomDatabase extends RoomDatabase {
     }
 
 }
-
-/*
-@Database(entities = {Person.class}, version = 1)
-public abstract class QuiDatabase extends RoomDatabase {
-    public abstract PersonDAO userDao();
-
-}
-
-    AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "database-name").build();
-
- */

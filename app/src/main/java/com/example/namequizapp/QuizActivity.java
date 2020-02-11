@@ -52,7 +52,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             submitButton.setOnClickListener(this);
 
             // Collects the imageView from the "database"-images
-            quizImage.setImageBitmap(questionList.get(randomInteger).getBitmap());
+            //quizImage.setImageBitmap(questionList.get(randomInteger).getBitmap());
         }
 
     }
@@ -73,7 +73,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         quizName.setText(""); // Resets the edit-text
         randomInteger = random.nextInt(arraySize); // New random index
-        quizImage.setImageBitmap(questionList.get(randomInteger).getBitmap()); // Collecting a new image
+        //quizImage.setImageBitmap(questionList.get(randomInteger).getBitmap()); // Collecting a new image
         scoreText.setText("Score: " + score + "/" + questions); // Updating the score list
 
 

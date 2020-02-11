@@ -108,20 +108,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Update the welcome text
         displayUsername();
     }
-    /*
-    private void fragmentLoader() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(!status){
-            Setting settings = new Setting();
-            fragmentTransaction.add(R.id.fragment_container, settings);
-            fragmentTransaction.commit();
-            fragmentTransaction.addToBackStack(null);
-            if(false){
-                status = true;
-            }
 
-        }
-
-    } */
 }

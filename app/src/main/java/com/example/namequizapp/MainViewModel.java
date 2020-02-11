@@ -20,7 +20,13 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void insertPerson(Person person) {
-        new InsertAsyncTask(personDAO).execute(person);
+
+        new InsertAsyncTask(personDAO) {
+            @Override
+            protected Void doInBackground(Person... people) {
+                return null;
+            }
+        }.execute(person);
     }
 
     @Override

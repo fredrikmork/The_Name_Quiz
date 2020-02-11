@@ -101,14 +101,14 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         SharedData app = (SharedData) getApplication();
 
         name = editText.getText().toString();
-        Person p = new Person(bitmap, name);
+        //Person p = new Person(bitmap, name);
 
         editText.setText("");
         errorText.setText("");
         imageView.setImageBitmap(null);
 
-        Log.i("Name: ", "" + p.getName());
-        Log.i("Bitmap: ", "" + p.getBitmap());
+        //Log.i("Name: ", "" + p.getName());
+        //Log.i("Bitmap: ", "" + p.getBitmap());
         if((bitmap == null) || name.isEmpty()) {
             if (name.isEmpty()){
                 editText.setError("You must type in a name!");
@@ -118,7 +118,7 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
 
         } else {
             errorText.setText("");
-            app.sharedData.add(p);
+            //app.sharedData.add(p);
             Context context = getApplicationContext();
             CharSequence text = "Image and name uploaded!";
             int duration = Toast.LENGTH_SHORT;

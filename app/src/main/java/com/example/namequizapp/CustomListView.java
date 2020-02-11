@@ -40,7 +40,7 @@ public class CustomListView extends ArrayAdapter<Person> {
             viewHolder = (ViewHolder) r.getTag();
 
         }
-        viewHolder.ivw.setImageBitmap(p.get(position).getBitmap());
+        //viewHolder.ivw.setImageBitmap(p.get(position).getBitmap());
         viewHolder.tvw.setText(p.get(position).getName());
         viewHolder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
