@@ -3,6 +3,8 @@ package com.example.namequizapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.namequizapp.interfaces.PersonDao;
 import com.example.namequizapp.models.Person;
 import com.example.namequizapp.R;
 import com.example.namequizapp.utils.SharedData;
@@ -26,18 +29,17 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private TextView scoreText, feedBackText;
     private SharedData app;
     private Random random = new Random();
-    private ArrayList<Person> questionList;
     private int score, questions, arraySize, randomInteger;
+    final PersonDao personDao = MainActivity.quizRoomDatabase.personDAO();
+    final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         app = (SharedData) getApplication();
-        questionList = app.sharedData; // Copies the ArrayList of persons, so we don't delete them.
+        arraySize = persons.size();
 
-        arraySize = questionList.size();
         if (arraySize < 1) {
             Toast.makeText(this, "No questions in the database. Create a new entry", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(QuizActivity.this, AddImageActivity.class);
@@ -56,15 +58,20 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             submitButton.setOnClickListener(this);
 
             // Collects the imageView from the "database"-images
-            //quizImage.setImageBitmap(questionList.get(randomInteger).getBitmap());
+            Bitmap bitmap = convertToBitmap(persons.get(randomInteger).getImage());
+            quizImage.setImageBitmap(bitmap);
         }
 
+    }
+
+    public Bitmap convertToBitmap(byte[] byteArray) {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
     }
 
     @Override
     public void onClick(View v) {
         questions += 1;
-        String correctName = questionList.get(randomInteger).getName(); // The correct name for the picture.
+        String correctName = persons.get(randomInteger).getName(); // The correct name for the picture.
         Log.i("QuizName: ", quizName.getText().toString());
         Log.i("CorrectName: ", correctName);
 
