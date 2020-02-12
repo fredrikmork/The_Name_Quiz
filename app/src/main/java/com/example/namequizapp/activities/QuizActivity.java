@@ -1,4 +1,4 @@
-package com.example.namequizapp;
+package com.example.namequizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.namequizapp.models.Person;
+import com.example.namequizapp.R;
+import com.example.namequizapp.utils.SharedData;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,8 +1,6 @@
-package com.example.namequizapp;
+package com.example.namequizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
 import android.content.Intent;
@@ -15,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.namequizapp.database.QuizRoomDatabase;
+import com.example.namequizapp.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

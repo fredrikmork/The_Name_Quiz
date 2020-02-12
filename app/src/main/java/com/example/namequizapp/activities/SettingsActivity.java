@@ -1,4 +1,4 @@
-package com.example.namequizapp;
+package com.example.namequizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.namequizapp.R;
 
 public class SettingsActivity extends AppCompatActivity {
     private TextView tv;

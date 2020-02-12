@@ -1,16 +1,14 @@
-package com.example.namequizapp;
+package com.example.namequizapp.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,9 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.namequizapp.models.Person;
+import com.example.namequizapp.R;
+import com.example.namequizapp.utils.SharedData;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import static java.lang.Thread.sleep;
 
 public class AddImageActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int RESULT_LOAD_RESULT = 1;
@@ -93,24 +95,25 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    public byte[] convertToByteArray(Bitmap bitmap) {
+
+        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /* Ignored for PNGs */, blob);
+        byte[] bitmapdata = blob.toByteArray();
+
+        return bitmapdata;
+    }
+
     @Override
     public void onClick(View v) {
         TextView errorText = findViewById(R.id.error_string);
         EditText editText = findViewById(R.id.name_edit);
         ImageView imageView = findViewById(R.id.imageView_add);
         SharedData app = (SharedData) getApplication();
-
-
         name = editText.getText().toString();
+        byte [] image = convertToByteArray(bitmap);
 
-        Person person = new Person(0, name);
-
-
-
-
-
-
-        //Person p = new Person(bitmap, name);
+        Person person = new Person(0, image,  name);
 
         editText.setText("");
         errorText.setText("");

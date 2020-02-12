@@ -1,8 +1,12 @@
-package com.example.namequizapp;
+package com.example.namequizapp.utils;
 
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.namequizapp.models.Person;
+import com.example.namequizapp.interfaces.PersonDao;
+import com.example.namequizapp.database.QuizRoomDatabase;
 
 import androidx.lifecycle.AndroidViewModel;
 
@@ -15,7 +19,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
 
         personDAO = personDB.personDAO();
-        personDB = QuizRoomDatabase.getDatabase(application);
+       // personDB = QuizRoomDatabase.getDatabase(application);
 
     }
 

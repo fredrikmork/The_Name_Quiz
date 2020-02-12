@@ -1,4 +1,6 @@
-package com.example.namequizapp;
+package com.example.namequizapp.interfaces;
+
+import com.example.namequizapp.models.Person;
 
 import java.util.List;
 

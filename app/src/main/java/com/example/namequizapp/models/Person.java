@@ -1,4 +1,4 @@
-package com.example.namequizapp;
+package com.example.namequizapp.models;
 
 import android.graphics.Bitmap;
 
@@ -14,17 +14,17 @@ public class Person {
     @NonNull
     private int id;
 
-    //@NonNull
-    // @ColumnInfo(name = "image")
-    //private Byte[] photo;
+    @NonNull
+    @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
     @NonNull
     @ColumnInfo(name = "nickname")
     private String name;
 
-    public Person(int id, String name) {
+    public Person(int id, byte[] image, String name) {
         this.id = id;
-        //this.photo = photo;
+        this.image = image;
         this.name = name;
     }
 
@@ -32,15 +32,15 @@ public class Person {
         return id;
     }
 
-   /* @NonNull
-    public Byte[] getPhoto() {
-        return photo;
+    @NonNull
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setPhoto(@NonNull Byte[] photo) {
-        this.photo = photo;
+    public void setImage(@NonNull byte[] image) {
+        this.image = image;
     }
-*/
+
     @NonNull
     public String getName() {
         return name;

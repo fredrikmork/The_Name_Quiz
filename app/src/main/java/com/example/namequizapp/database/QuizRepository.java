@@ -1,6 +1,10 @@
-package com.example.namequizapp;
+package com.example.namequizapp.database;
 
 import android.os.AsyncTask;
+
+import com.example.namequizapp.interfaces.PersonDao;
+import com.example.namequizapp.models.Person;
+
 import java.util.List;
 
 import androidx.lifecycle.MutableLiveData;

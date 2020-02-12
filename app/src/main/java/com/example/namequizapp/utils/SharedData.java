@@ -1,9 +1,12 @@
-package com.example.namequizapp;
+package com.example.namequizapp.utils;
 
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.example.namequizapp.models.Person;
+import com.example.namequizapp.R;
 
 import java.util.ArrayList;
 

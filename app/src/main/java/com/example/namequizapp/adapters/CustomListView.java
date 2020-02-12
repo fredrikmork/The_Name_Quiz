@@ -1,6 +1,8 @@
-package com.example.namequizapp;
+package com.example.namequizapp.adapters;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.namequizapp.models.Person;
+import com.example.namequizapp.interfaces.PersonDao;
+import com.example.namequizapp.R;
+import com.example.namequizapp.activities.MainActivity;
 
 import java.util.ArrayList;
 
@@ -25,13 +32,19 @@ public class CustomListView extends ArrayAdapter<Person> {
         this.p = p;
     }
 
+    public Bitmap convertToBitmap(byte[] byteArray) {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+    }
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View r = convertView;
         ViewHolder viewHolder = null;
-
         final PersonDao personDao = MainActivity.quizRoomDatabase.personDAO();
+        final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
+        byte[] bytes = persons.get(position).getImage();
+        Bitmap bitmap = convertToBitmap(bytes);
 
         if (r == null) {
             LayoutInflater layoutInflater = context.getLayoutInflater();
@@ -42,16 +55,13 @@ public class CustomListView extends ArrayAdapter<Person> {
             viewHolder = (ViewHolder) r.getTag();
 
         }
-        //viewHolder.ivw.setImageBitmap(p.get(position).getBitmap());
-        //viewHolder.tvw.setText(p.get(position).getName());
 
-        final ArrayList<Person> personer = (ArrayList<Person>) personDao.loadAllPersons();
-
-        viewHolder.tvw.setText(personer.get(position).getName());
+        viewHolder.ivw.setImageBitmap(bitmap);
+        viewHolder.tvw.setText(persons.get(position).getName());
         viewHolder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                personDao.deletePerson(personer.get(position));
+                personDao.deletePerson(persons.get(position));
                 p.remove(position);
                 notifyDataSetChanged();
             }

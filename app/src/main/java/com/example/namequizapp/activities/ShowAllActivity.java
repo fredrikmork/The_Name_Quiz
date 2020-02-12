@@ -1,4 +1,4 @@
-package com.example.namequizapp;
+package com.example.namequizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import com.example.namequizapp.adapters.CustomListView;
+import com.example.namequizapp.models.Person;
+import com.example.namequizapp.R;
+import com.example.namequizapp.utils.SharedData;
 
 import java.util.ArrayList;
 

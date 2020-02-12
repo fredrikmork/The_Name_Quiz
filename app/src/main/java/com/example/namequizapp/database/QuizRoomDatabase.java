@@ -1,6 +1,9 @@
-package com.example.namequizapp;
+package com.example.namequizapp.database;
 
 import android.content.Context;
+
+import com.example.namequizapp.interfaces.PersonDao;
+import com.example.namequizapp.models.Person;
 
 import androidx.room.Database;
 import androidx.room.Room;
