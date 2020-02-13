@@ -29,7 +29,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private TextView scoreText, feedBackText;
     private SharedData app;
     private Random random = new Random();
-    private int score, questions, arraySize, randomInteger;
+    public int score, questions, arraySize, randomInteger;
     final PersonDao personDao = MainActivity.quizRoomDatabase.personDAO();
     final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
 
@@ -44,7 +44,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "No questions in the database. Create a new entry", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(QuizActivity.this, AddImageActivity.class);
             startActivity(intent);
-            // setContentView(R.layout.activity_main); // Redirect
         } else {
             setContentView(R.layout.activity_quiz);
 
