@@ -52,6 +52,21 @@ public class DbTest {
         assert(sizeBefore + 1 == sizeAfter);
     }
 
+    @Test
+    public void testAddAndRemove(){
+        Resources res = ctx.getResources();
+        Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.vicious_dog_0);
+        byte[] bytearr = convertToByteArray(bitmap);
+        Person person = new Person(0, bytearr, "test");
+        int sizeBefore = personDao.getAllPersons().size();
+        personDao.insertPerson(person);
+        int sizeAfter = personDao.getAllPersons().size();
+        assert(sizeBefore + 1 == sizeAfter);
+        personDao.deletePerson(person);
+        sizeAfter = personDao.getAllPersons().size();
+        assert (sizeAfter == 0);
+    }
+
     public byte[] convertToByteArray(Bitmap bitmap) {
 
         ByteArrayOutputStream blob = new ByteArrayOutputStream();
