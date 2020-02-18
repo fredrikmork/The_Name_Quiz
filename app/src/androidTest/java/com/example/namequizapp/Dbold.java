@@ -5,17 +5,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.runner.lifecycle.Stage;
 
-import androidx.room.Room;
-import androidx.test.core.app.ApplicationProvider;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.rule.ActivityTestRule;
-
 import com.example.namequizapp.activities.MainActivity;
-import com.example.namequizapp.activities.QuizActivity;
 import com.example.namequizapp.database.QuizRoomDatabase;
 import com.example.namequizapp.interfaces.PersonDao;
 import com.example.namequizapp.models.Person;
@@ -30,34 +23,30 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Random;
+
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.typeText;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class DbTest {
+public class Dbold {
     private QuizRoomDatabase db;
     private PersonDao personDao;
     private Context ctx;
 
 
     @Rule
-    public ActivityTestRule<QuizActivity> activityRule =
-            new ActivityTestRule<>(QuizActivity.class);
-    QuizActivity quizActivity;
+    public ActivityTestRule<MainActivity> activityRule =
+            new ActivityTestRule<>(MainActivity.class);
 
     @Before
     public void setUp(){
         ctx = ApplicationProvider.getApplicationContext();
         db = Room.inMemoryDatabaseBuilder(ctx, QuizRoomDatabase.class).build();
         personDao = db.personDAO();
-        quizActivity = activityRule.getActivity();
     }
 
     @After
@@ -65,7 +54,7 @@ public class DbTest {
         db.close();
     }
 
-
+    @Test
     public void testAdd(){
         Resources res = ctx.getResources();
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.vicious_dog_0);
@@ -78,7 +67,7 @@ public class DbTest {
     }
 
 
-
+    @Test
     public void testAddAndRemove(){
         Resources res = ctx.getResources();
         Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.vicious_dog_0);
@@ -121,18 +110,19 @@ public class DbTest {
         }
         assert (score == 1);
     }
-
+/*
     @Test
     public void scoreTest() {
+        onView(withId(R.id.quizButton)).perform(click());
+        QuizActivity quizActivity = (QuizActivity) getActivityInstance();
 
-        onView(withId(R.id.editText)).perform(typeText("test"), closeSoftKeyboard());
+        onView(withId(R.id.editText)).perform(typeText("test"));
         onView(withId(R.id.submit_button)).perform(click());
-        int score = quizActivity.getScore();
+        int score = quizActivity.score;
 
-
-        assertEquals (1,score);
+        assert (score == 1);
     }
-
+*/
     private Activity getActivityInstance() {
         final Activity[] currentActivity = {null};
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.namequizapp.database.QuizRoomDatabase;
 import com.example.namequizapp.R;
+import com.example.namequizapp.utils.SharedData;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        quizRoomDatabase = Room.databaseBuilder(getApplicationContext(), QuizRoomDatabase.class, "persondb").allowMainThreadQueries().build();
+        quizRoomDatabase = ((SharedData)getApplication()).quizRoomDatabase;
 
         quiz = findViewById(R.id.quizButton);
         addImage = findViewById(R.id.addImage_button);

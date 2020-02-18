@@ -30,14 +30,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private SharedData app;
     private Random random = new Random();
     public int score, questions, arraySize, randomInteger;
-    final PersonDao personDao = MainActivity.quizRoomDatabase.personDAO();
-    final ArrayList<Person> persons = (ArrayList<Person>) personDao.loadAllPersons();
+    PersonDao personDao;
+    ArrayList<Person> persons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         app = (SharedData) getApplication();
+        personDao = app.quizRoomDatabase.personDAO();
+        persons = (ArrayList<Person>) personDao.loadAllPersons();
         arraySize = persons.size();
 
         if (arraySize < 1) {
@@ -87,5 +89,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         scoreText.setText("Score: " + score + "/" + questions); // Updating the score list
 
 
+    }
+
+    public int getScore() {
+        return score;
     }
 }
