@@ -1,7 +1,6 @@
 package com.example.namequizapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        quizRoomDatabase = ((SharedData)getApplication()).quizRoomDatabase;
+        quizRoomDatabase = ((SharedData) getApplication()).quizRoomDatabase;
 
         quiz = findViewById(R.id.quizButton);
         addImage = findViewById(R.id.addImage_button);
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.show_button:
                 Intent intent_show = new Intent(MainActivity.this, ShowAllActivity.class);
                 startActivity(intent_show);

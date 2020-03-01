@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,19 +37,30 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_image);
+
         addImagePerson = findViewById(R.id.add_PersonName);
-        addImagePerson.setOnClickListener(this);
         upload = findViewById(R.id.upload_button);
         camera = findViewById(R.id.camera_button);
 
+        addImagePerson.setOnClickListener(this);
     }
 
-    public void uploadImage(View v){
+    /**
+     * Uses a intent: Use MediaStore Content Provider and fetches the gallery content
+     *
+     * @param v
+     */
+    public void uploadImage(View v) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_LOAD_RESULT);
     }
 
-    public void dispatchTakePictureIntent(View v){
+    /**
+     * Uses a intent: Use MediaStore Content Provider and fethes the camera
+     *
+     * @param v
+     */
+    public void dispatchTakePictureIntent(View v) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -60,6 +70,7 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         ImageView imageToUpload = findViewById(R.id.imageView_add);
 
         if (requestCode == RESULT_LOAD_RESULT && resultCode == RESULT_OK && data != null) {
@@ -72,23 +83,24 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
             }
             imageToUpload.setImageBitmap(bitmap);
 
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             bitmap = (Bitmap) extras.get("data");
             imageToUpload.setImageBitmap(bitmap);
             String title = "FreddaTEST";
             String description = "Teste";
             try {
+                //Implement Runnable for getContentResolver()?
                 String fileURL = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, title, description);
                 Toast.makeText(this, fileURL, Toast.LENGTH_SHORT).show();
-                if( fileURL == null) {
+                if (fileURL == null) {
                     Log.d("Still", "Image insert failed.");
                     return;
                 } else {
                     Uri picUri = Uri.parse(fileURL);
                     sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, picUri));
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 Log.e("Still", "Error writing file", e);
             }
 
@@ -111,9 +123,9 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
         ImageView imageView = findViewById(R.id.imageView_add);
         SharedData app = (SharedData) getApplication();
         name = editText.getText().toString();
-        byte [] image = convertToByteArray(bitmap);
+        byte[] image = convertToByteArray(bitmap);
 
-        Person person = new Person(0, image,  name);
+        Person person = new Person(0, image, name);
 
         editText.setText("");
         errorText.setText("");
@@ -121,8 +133,8 @@ public class AddImageActivity extends AppCompatActivity implements View.OnClickL
 
         //Log.i("Name: ", "" + p.getName());
         //Log.i("Bitmap: ", "" + p.getBitmap());
-        if((bitmap == null) || name.isEmpty()) {
-            if (name.isEmpty()){
+        if ((bitmap == null) || name.isEmpty()) {
+            if (name.isEmpty()) {
                 editText.setError("You must type in a name!");
             } else {
                 errorText.setText("You must choose a picture.");

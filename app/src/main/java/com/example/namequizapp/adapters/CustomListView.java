@@ -77,7 +77,7 @@ public class CustomListView extends ArrayAdapter<Person> {
         private ImageView ivw;
         private ImageButton btn;
 
-        public ViewHolder(View v){
+        public ViewHolder(View v) {
             tvw = v.findViewById(R.id.textView);
             ivw = v.findViewById(R.id.imageView);
             btn = v.findViewById(R.id.deleteButton);

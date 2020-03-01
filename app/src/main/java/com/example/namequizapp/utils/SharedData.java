@@ -26,6 +26,8 @@ public class SharedData extends Application {
 
         context = this;
         quizRoomDatabase = Room.databaseBuilder(getApplicationContext(), QuizRoomDatabase.class, "persondb").allowMainThreadQueries().build();
+
+
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.cat);
         bMap = BitmapFactory.decodeResource(context.getResources(), R.drawable.vicious_dog_0);
         //kitty = new Person(bitmap, "Cat");
